@@ -67,16 +67,17 @@ public class Jogador {
         return desempenho_academico_m3;
 
     }
-    public void mostrarStatus(){
+    public String toString(){
 
-        System.out.println( "Energia: " + energia + "\n" +
-                            "Saude: " + saude + "\n" +
-                            "Porcentagem de completude do curso: " + porcentagem_curso + "\n" +
-                            "Motivação: " + motivacao + "\n" +
-                            "Dinheiro: " + dinheiro + "\n" +
-                            "Desempenho Matéria 1: " + desempenho_academico_m1 + "\n" +
-                            "Desempenho Matéria 2: " + desempenho_academico_m2 + "\n" +
-                            "Desempenho Matéria 3: " + desempenho_academico_m3 + "\n");
+        return ( "Nome:" + nome + "\n" +
+                "Energia: " + energia + "\n" +
+                "Saude: " + saude + "\n" +
+                "Porcentagem de completude do curso: " + porcentagem_curso + "\n" +
+                "Motivação: " + motivacao + "\n" +
+                "Dinheiro: " + dinheiro + "\n" +
+                "Desempenho Matéria 1: " + desempenho_academico_m1 + "\n" +
+                "Desempenho Matéria 2: " + desempenho_academico_m2 + "\n" +
+                "Desempenho Matéria 3: " + desempenho_academico_m3 + "\n");
     }
     public void somarDinheiro(double valor){
         this.dinheiro += valor;
