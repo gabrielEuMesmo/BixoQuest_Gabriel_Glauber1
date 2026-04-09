@@ -1,6 +1,5 @@
-public class Jogador {
+public class Jogador extends Entidade{
 
-    private String nome = "";
     private int saude;
     private int energia;
     private double porcentagem_curso = 0;
@@ -14,7 +13,7 @@ public class Jogador {
     public Jogador(String nomeNovo, int saudeInicio, int energiaInicio, int motivacaoInicio,
                    double dinheiroInicio){
 
-        this.nome = nomeNovo;
+        this.setNome(nomeNovo);
         this.saude = saudeInicio;
         this.energia = energiaInicio;
         this.motivacao = motivacaoInicio;
@@ -32,11 +31,7 @@ public class Jogador {
         return saude;
 
     }
-    public String getNome (){
 
-        return nome;
-
-    }
     public double getPorcentagem (){
 
         return porcentagem_curso;
@@ -69,7 +64,7 @@ public class Jogador {
     }
     public String toString(){
 
-        return ( "Nome:" + nome + "\n" +
+        return ( "Nome:" + getNome() + "\n" +
                 "Energia: " + energia + "\n" +
                 "Saude: " + saude + "\n" +
                 "Porcentagem de completude do curso: " + porcentagem_curso + "\n" +
