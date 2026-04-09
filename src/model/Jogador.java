@@ -1,3 +1,5 @@
+package model;
+
 public class Jogador extends Entidade{
 
     private int saude;
@@ -74,6 +76,19 @@ public class Jogador extends Entidade{
                 "Desempenho Matéria 2: " + desempenho_academico_m2 + "\n" +
                 "Desempenho Matéria 3: " + desempenho_academico_m3 + "\n");
     }
+
+    public void somarDes_acad_m1(int valor){
+        desempenho_academico_m1+= valor;
+    }
+
+    public void somarDes_acad_m2(int valor){
+        desempenho_academico_m2+= valor;
+    }
+
+    public void somarDes_acad_m3(int valor){
+        desempenho_academico_m3+= valor;
+    }
+
     public void somarDinheiro(double valor){
         this.dinheiro += valor;
     }
@@ -109,12 +124,15 @@ public class Jogador extends Entidade{
     public void maximizarMotivacao() {
         this.motivacao = 10;
     }
+
     public void subtrairSaude(int valor) {
         this.saude -= valor;
     }
+
     public void somarSaude(int valor) {
         this.saude += valor;
     }
+
     public void maximizarSaude() {
         this.saude = 10;
     }

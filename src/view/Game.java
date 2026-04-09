@@ -1,4 +1,8 @@
-import java.util.*;
+package view;
+
+import model.Jogador;
+
+import java.util.Scanner;
 
 public class Game {
 
