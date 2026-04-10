@@ -136,6 +136,18 @@ public class Jogador extends Entidade{
     public void maximizarSaude() {
         this.saude = 10;
     }
+
+    public Opcao mostrarOpcao(){
+
+
+    }
+
+    public boolean escolherOpcao(int escolha){
+
+
+
+    }
+
 }
 
 
