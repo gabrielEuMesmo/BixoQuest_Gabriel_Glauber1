@@ -3,7 +3,7 @@ package model;
 public abstract class Entidade {
     private String nome;
 
-    public void setNome(String nomeNovo){
+    public Entidade(String nomeNovo){
 
         nome = nomeNovo;
 

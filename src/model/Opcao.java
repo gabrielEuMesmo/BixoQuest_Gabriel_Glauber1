@@ -1,11 +1,10 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Opcao {
     private String titulo;
-    private List<String> opcoes;
+    private ArrayList<String> opcoes;
 
     public Opcao(){
         opcoes = new ArrayList<>();
@@ -15,7 +14,7 @@ public class Opcao {
         return titulo;
     }
 
-    public List<String> getOpcoes() {
+    public ArrayList<String> getOpcoes() {
         return opcoes;
     }
 

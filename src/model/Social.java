@@ -1,11 +1,11 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Social extends Menu{
 
-    private List<Colega> colegas;
+    private ArrayList<Colega> colegas;
+    private int pagina;
 
     public Social(){
         colegas = new ArrayList<Colega>();
@@ -15,7 +15,14 @@ public class Social extends Menu{
 
     }
     public Opcao mostrar(){
+        if(pagina == 0){
 
+            return new Opcao();
+        }
+
+    }
+    public void addColega(){
+        colegas.add(CriarRandom.criarColega());
 
     }
 

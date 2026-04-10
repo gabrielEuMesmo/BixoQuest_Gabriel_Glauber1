@@ -15,7 +15,7 @@ public class Jogador extends Entidade{
     public Jogador(String nomeNovo, int saudeInicio, int energiaInicio, int motivacaoInicio,
                    double dinheiroInicio){
 
-        this.setNome(nomeNovo);
+        super(nomeNovo);
         this.saude = saudeInicio;
         this.energia = energiaInicio;
         this.motivacao = motivacaoInicio;
