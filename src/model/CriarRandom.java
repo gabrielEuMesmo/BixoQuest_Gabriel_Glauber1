@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class CriarRandom {
+
     private static String[] nomesColegas = {};
     private static String[] cargosColegas = {};
+
     private static Random random = new Random();
 
     public static Colega criarColega(){
