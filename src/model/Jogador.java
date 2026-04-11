@@ -11,6 +11,7 @@ public class Jogador extends Entidade{
     private int desempenho_academico_m2 = 0;
     private int desempenho_academico_m3 = 0;
 
+
     //Construtor
     public Jogador(String nomeNovo, int saudeInicio, int energiaInicio, int motivacaoInicio,
                    double dinheiroInicio){

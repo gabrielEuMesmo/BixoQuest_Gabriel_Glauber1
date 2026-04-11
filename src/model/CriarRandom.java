@@ -5,7 +5,7 @@ import java.util.Random;
 public class CriarRandom {
 
     private static final String[] nomesColegas = {"Gbriel"};
-private static final String[] cargosColegas = {"EXA", "TEC", "ALG"};
+    private static final String[] cargosColegas = {"EXA", "TEC", "ALG"};
 
 
     private static final Random random = new Random();

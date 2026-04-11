@@ -44,6 +44,7 @@ public class Menu extends Atributos{
     }
 
     public void addAcao(Acao acao){
+
             acoesFeitas.add(acao);
             somaAtributos(acao);
 
