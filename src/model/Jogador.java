@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jogador {
-    private String nome;
-    private int saude;
-    private int energia;
-    private int motivacao;
-    private double dinheiro;
-    private int desempenho_academico_EXA;
-    private int desempenho_academico_TEC;
-    private int desempenho_academico_ALG;
-    private double porcentagem_curso;
+    public String nome;
+    public int saude;
+    public int energia; //ESSA ENERGIA É SEMANAL
+    public int motivacao;
+    public double dinheiro;
+    public int desempenho_academico_EXA;
+    public int desempenho_academico_TEC;
+    public int desempenho_academico_ALG;
+    public double porcentagem_curso;
+    public int energiaDia; //ESSA ENERGIA É DIARIA
 
     //FUTURAMENTE SEPARAR CADA DESSES ATRIBUTOS PARA COMENTAR ESPECIFICANDO CADA UM
 
@@ -35,6 +36,7 @@ public class Jogador {
         this.desempenho_academico_TEC = 0;
         this.desempenho_academico_ALG = 0;
         this.porcentagem_curso       = 0.0;
+        this.energiaDia                = clamp(energiaInicio, MIN_STATUS, ENERGIA_BASE);
         this.acoesDoTurno            = new ArrayList<>();
     }
 
@@ -48,22 +50,27 @@ public class Jogador {
     //ENERGIA
 
     public int getEnergia() { return energia; }
+    public int getEnergiaDia() { return energiaDia; }
     public void somarEnergia(int valor) {
         this.energia = clamp(this.energia + valor, MIN_STATUS, ENERGIA_BASE);
     }
+    public void somarEnergiaDia(int valor) { this.energiaDia = clamp(this.energiaDia + valor, MIN_STATUS, ENERGIA_BASE); }
     public void subtrairEnergia(int valor) {
         this.energia = clamp(this.energia - valor, MIN_STATUS, ENERGIA_BASE);
     }
+    public void subtrairEnergiaDia(int valor) { this.energiaDia = clamp(this.energiaDia - valor, MIN_STATUS, ENERGIA_BASE); }
     //RESTAURAR PARA VIRADA DE TURNO!
     public void restaurarEnergia() {
         this.energia = ENERGIA_BASE;
     }
+    public void restaurarEnergiaDia() { this.energiaDia = ENERGIA_BASE;}
 
     //PARA VERIFICAÇÃO DE CASO CONTENHA ENERGIA (SE NA VERIFICAÇAO DE AÇÃO O JOGADOR NÃO TENHA ENERGIA, A AÇÃO NÃO VAI
     //SER REALIZADA E VAI EXIBIR UMA MENSAGEM DE FALTA DE ENERGIA!)
     public boolean temEnergia() {
         return this.energia > 0;
     }
+    public boolean temEnergiaDia() { return this.energiaDia > 0; }
 
     //SAUDE
     public int getSaude() { return saude; }
@@ -109,8 +116,20 @@ public class Jogador {
     // DESEMPENHO ACADEMICO
     //GETs
     public int getDesempenho_EXA() { return desempenho_academico_EXA; }
+    public int somarDesempenhoAcademicoEXA(int valor) {
+        if (valor > 0) this.desempenho_academico_EXA += valor;
+        return this.desempenho_academico_EXA;
+    }
     public int getDesempenho_TEC() { return desempenho_academico_TEC; }
+    public int somarDesempenhoAcademicoTEC(int valor) {
+        if (valor > 0) this.desempenho_academico_TEC += valor;
+        return this.desempenho_academico_TEC;
+    }
     public int getDesempenho_ALG() { return desempenho_academico_ALG; }
+    public int somarDesempenhoAcademicoALG(int valor) {
+        if (valor > 0) this.desempenho_academico_ALG += valor;
+        return this.desempenho_academico_ALG;
+    }
 
     //INCREMENTOS ou SOMAS
     public void somarDesempenhoEXA(int valor) {
@@ -168,6 +187,7 @@ public class Jogador {
     public String toString() {
         return  "Nome       : " + nome + "\n" +
                 "Energia    : " + energia + "/" + ENERGIA_BASE + "\n" +
+                "EnergiaDia : " + energiaDia + "/" + ENERGIA_BASE + "\n" +
                 "Saude      : " + saude + "/100\n" +
                 "Motivacao  : " + motivacao + "/100\n" +
                 "Dinheiro   : R$ " + String.format("%.2f", dinheiro) + "\n" +

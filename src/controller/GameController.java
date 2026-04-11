@@ -8,6 +8,7 @@ import model.Jogador;
 import model.Local;
 import model.NPC;
 import model.Opcao;
+import model.OpcaoVisualNovel;
 import model.OpcaoResposta;
 import model.enums.BlocoTempo;
 import model.enums.SemanaEnum;
@@ -16,12 +17,7 @@ import view.TerminalView;
 import java.util.List;
 import java.util.Map;
 
-/**
- * GameController e o maestro do jogo.
- * Ele coordena o fluxo entre Model (Jogador, Local, NPC) e View (TerminalView).
- * Nenhuma logica de negocio fica aqui: ele apenas chama os metodos certos
- * nos objetos certos e passa os resultados para a View exibir.
- */
+
 public class GameController {
 
     // ── Dependencias
@@ -83,7 +79,6 @@ public class GameController {
 
 
     private void loopPrincipal() {
-
         while (semestreAtual <= TOTAL_SEMESTRES && !jogador.isGameOver() && !jogador.isFormado()) {
 
             for (semanaAtual = 1; semanaAtual <= 6; semanaAtual++) {
@@ -91,7 +86,7 @@ public class GameController {
                 SemanaEnum tipoSemana = SEMANAS_POR_SEMESTRE[semanaAtual - 1];
 
                 // Restaura energia no inicio de cada semana
-                jogador.restaurarEnergia();
+                jogador.restaurarEnergiaDia();
                 jogador.limparAcoesDoTurno();
                 blocoTempo = BlocoTempo.MANHA_1;
 
@@ -120,7 +115,7 @@ public class GameController {
     private void executarSemana(SemanaEnum tipoSemana) {
 
         // Loop de blocos de tempo (MANHA_1 ate NOITE)
-        while (blocoTempo != null && jogador.temEnergia() && !jogador.isGameOver()) {
+        while (blocoTempo != null && jogador.temEnergiaDia() && !jogador.isGameOver()) {
 
             // Exibe status no inicio de cada bloco
             view.exibirStatusJogador(jogador, semestreAtual, semanaAtual, tipoSemana, blocoTempo);
@@ -130,7 +125,7 @@ public class GameController {
 
             // Avanca para o proximo bloco de tempo
             BlocoTempo proximo = blocoTempo.proximo();
-            if (proximo != null && jogador.temEnergia()) {
+            if (proximo != null && jogador.temEnergiaDia()) {
                 blocoTempo = proximo;
                 view.exibirAvancoBloco(blocoTempo);
             } else {
@@ -148,19 +143,16 @@ public class GameController {
     }
 
     // LOOP DE MENU DE NAVEGACAO
-
-
-
     private void executarMenuNavegacao() {
 
         rotas.resetarParaRaiz();
         boolean continuarNavegando = true;
 
-        while (continuarNavegando && jogador.temEnergia() && !jogador.isGameOver()) {
+        while (continuarNavegando && jogador.temEnergiaDia() && !jogador.isGameOver()) {
 
-            Opcao menuAtual = rotas.getMenuAtual();
+            OpcaoVisualNovel menuAtual = rotas.getMenuAtual();
             boolean podeVoltar = !rotas.isNaRaiz();
-
+            //opcao
             // Exibe o menu de navegacao (lista de locais)
             view.exibirMenuNavegacao(menuAtual, podeVoltar);
             int escolha = view.lerOpcao(menuAtual.getTextosEscolhas().size());
@@ -188,7 +180,7 @@ public class GameController {
     private boolean executarInteracaoNPC() {
 
         // Pega o Local real a partir do nomeLocalReal da Opcao atual
-        Opcao opcaoAtual     = rotas.getMenuAtual();
+        OpcaoVisualNovel opcaoAtual     = rotas.getMenuAtual();
         String nomeLocalReal = opcaoAtual.getNomeLocalReal();
         Local  localAtual    = mapaMundo.get(nomeLocalReal);
 
@@ -256,7 +248,6 @@ public class GameController {
 
         return true;
     }
-
     // PROVA
 
     private void executarProva(SemanaEnum tipoProva) {

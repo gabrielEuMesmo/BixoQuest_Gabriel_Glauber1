@@ -1,5 +1,7 @@
 package controller;
 import model.Opcao;
+import model.OpcaoVisualNovel;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +10,7 @@ public class SistemaDeRotas {
 
     private String pag;
     private int ultimaEscolha;
-    private Map<String, Opcao> roteador;
+    private Map<String, OpcaoVisualNovel> roteador;
 
     public SistemaDeRotas() {
         this.pag          = "0";
@@ -22,22 +24,25 @@ public class SistemaDeRotas {
     // Menus de acao critica recebem o nomeLocalReal para busca no mapaMundo.
     private void alimentarDicionario() {
 
+        //SISTEMA DE ROTAS VAI ALTERAR DE "Opcao" PARA "OpcaoVisualNovel"
+        //ADAPTAÇÃO PARA GAYBRIEL
+
         //INICIAL: Portao da UEFS
-        roteador.put("0", new Opcao(
+        roteador.put("0", new OpcaoVisualNovel(
                 "Portao da UEFS",
                 Arrays.asList("Modulo 1", "Modulo 5", "Area Central"),
                 false
         ));
 
         //MODULO 1
-        roteador.put("01", new Opcao(
+        roteador.put("01", new OpcaoVisualNovel(
                 "Modulo 1",
                 Arrays.asList("Salas do M1", "Biblioteca Central"),
                 false
         ));
 
         // Salas do M1: acao critica — nomeLocalReal = "Salas do M1"
-        roteador.put("011", new Opcao(
+        roteador.put("011", new OpcaoVisualNovel(
                 "Salas do M1",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
@@ -47,7 +52,7 @@ public class SistemaDeRotas {
         ));
 
         // Biblioteca: ta sem NPC
-        roteador.put("012", new Opcao(
+        roteador.put("012", new OpcaoVisualNovel(
                 "Biblioteca Central",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
@@ -55,14 +60,14 @@ public class SistemaDeRotas {
         ));
 
         //MODULO 5
-        roteador.put("02", new Opcao(
+        roteador.put("02", new OpcaoVisualNovel(
                 "Modulo 5",
                 Arrays.asList("Cantina do M5", "PATs do M5", "DA de Computacao"),
                 false
         ));
 
         //CANTINA DO M5
-        roteador.put("021", new Opcao(
+        roteador.put("021", new OpcaoVisualNovel(
                 "Cantina do M5",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
@@ -70,7 +75,7 @@ public class SistemaDeRotas {
         ));
 
         //PAT DO MODULO 5
-        roteador.put("022", new Opcao(
+        roteador.put("022", new OpcaoVisualNovel(
                 "PATs do M5",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
@@ -78,7 +83,7 @@ public class SistemaDeRotas {
         ));
 
         //DA DE COMPUTAÇÃO
-        roteador.put("023", new Opcao(
+        roteador.put("023", new OpcaoVisualNovel(
                 "DA de Computacao",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
@@ -88,20 +93,20 @@ public class SistemaDeRotas {
 
 
         //AREA CENTRAL
-        roteador.put("03", new Opcao(
+        roteador.put("03", new OpcaoVisualNovel(
                 "Area Central",
                 Arrays.asList("Praca Central", "Colegiado de Computacao"),
                 false
         ));
 
-        roteador.put("031", new Opcao(
+        roteador.put("031", new OpcaoVisualNovel(
                 "Praca Central",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
                 "Praca Central"
         ));
 
-        roteador.put("032", new Opcao(
+        roteador.put("032", new OpcaoVisualNovel(
                 "Colegiado de Computacao",
                 Arrays.asList("Interagir com personagens presentes"),
                 true,
@@ -111,12 +116,12 @@ public class SistemaDeRotas {
 
     // CONTROLE DE NAVEGACAO
 
-    public Opcao getMenuAtual() {
+    public OpcaoVisualNovel getMenuAtual() {
         return roteador.get(pag);
     }
-
+    //opcao
     public boolean processarEscolha(int escolha) {
-        Opcao menuAtual = getMenuAtual();
+        OpcaoVisualNovel menuAtual = getMenuAtual();
 
         //BOTÃO DE VOLTAR: sobe um nivel, removendo o ultimo digito da pag!
         if (escolha == 0) {
@@ -131,7 +136,6 @@ public class SistemaDeRotas {
         if (escolha < 1 || escolha > menuAtual.getTextosEscolhas().size()) {
             return true; // Repete o menu sem alterar nada
         }
-
 
         //AÇÃO CRITICA: se o menu atual for de acao critica, a escolha leva diretamente para a interacao com NPC!
         if (menuAtual.isAcaoCritica()) {

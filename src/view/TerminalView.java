@@ -1,10 +1,5 @@
 package view;
-import model.Acao;
-import model.CenaDialogo;
-import model.Jogador;
-import model.NPC;
-import model.Opcao;
-import model.OpcaoResposta;
+import model.*;
 import model.enums.BlocoTempo;
 import model.enums.SemanaEnum;
 import java.util.List;
@@ -31,7 +26,7 @@ public class TerminalView {
         System.out.println("  Objetivo: sobreviver e se FORMAR!");
         System.out.println(LINHA_DUPLA);
         System.out.println();
-    }
+    }//opcao
 
     //ESSE METODO: PEDE PARA O JOGADOR DIGITAR O NOME DO SEU PERSONAGEM, E GARANTE QUE SEJA UM NOME VÁLIDO (NÃO VAZIO),
     public String pedirNomeJogador() {
@@ -54,7 +49,7 @@ public class TerminalView {
         System.out.println(LINHA_SIMPLES);
         System.out.printf("  Nome: %-30s%n", j.getNome());
         System.out.println(LINHA_SIMPLES);
-        System.out.printf("  Energia    : %s  [%d pts]%n",  barraStatus(j.getEnergia(), 70),  j.getEnergia());
+        System.out.printf("  Energia    : %s  [%d pts]%n",  barraStatus(j.getEnergiaDia(), 70),  j.getEnergiaDia());
         System.out.printf("  Saude      : %s  [%d pts]%n",  barraStatus(j.getSaude(), 100),   j.getSaude());
         System.out.printf("  Motivacao  : %s  [%d pts]%n",  barraStatus(j.getMotivacao(), 100), j.getMotivacao());
         System.out.println(LINHA_SIMPLES);
@@ -68,7 +63,7 @@ public class TerminalView {
     //MENU DE NAVEGACAO (SistemaDeRotas)
 
     //ESSE METODO: EXIBE O MENU DE NAVEGACAO PARA O JOGADOR, COM O TITULO DO LOCAL ATUAL E AS OPÇÕES DE ESCOLHA DISPONIVEIS!
-    public void exibirMenuNavegacao(Opcao opcao, boolean podevoltar) {
+    public void exibirMenuNavegacao(OpcaoVisualNovel opcao, boolean podevoltar) {
         System.out.println();
         System.out.println("  [ " + opcao.getTituloLocal() + " ]");
         System.out.println(LINHA_SIMPLES);
@@ -159,7 +154,7 @@ public class TerminalView {
         System.out.println(LINHA_SIMPLES);
         System.out.println("  Status atual:");
         System.out.printf("  Energia: %d  |  Saude: %d  |  Motivacao: %d  |  Dinheiro: R$ %.2f%n",
-                j.getEnergia(), j.getSaude(), j.getMotivacao(), j.getDinheiro());
+                j.getEnergiaDia(), j.getSaude(), j.getMotivacao(), j.getDinheiro());
         System.out.println(LINHA_DUPLA);
         pausar();
     }
