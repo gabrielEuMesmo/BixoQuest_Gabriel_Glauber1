@@ -6,9 +6,9 @@ public class Opcao {
     private final String titulo;
     private ArrayList<String> opcoes;
 
-    public Opcao(String titulo){
+    public Opcao(String titulo, ArrayList<String> opcoes){
         this.titulo = titulo;
-        opcoes = new ArrayList<>();
+        this.opcoes = new ArrayList<>(opcoes);
     }
 
     public String getTitulo(){
