@@ -3,12 +3,12 @@ package model;
 public class Colega extends Personagem{
 
     private int semestre;
-    private boolean cargo;
-    private String tipoCargo;
+    private final boolean cargo;
+    private final String tipoCargo;
     private int relacionamento;
-    private int conhecimento_EXA;
-    private int conhecimento_TEC;
-    private int conhecimento_ALG;
+    private final int conhecimento_EXA;
+    private final int conhecimento_TEC;
+    private  final int conhecimento_ALG;
     private boolean conversou;
 
     public Colega(String nome, int semestre, boolean cargo, String tipoCargo, int conhecimento_EXA, int conhecimento_TEC, int conhecimento_ALG){
@@ -26,6 +26,7 @@ public class Colega extends Personagem{
     @Override
     public String toString() {
         return getNome() + "\n"+
+                "   Semestre: " + semestre + "\n" +
                 "   Cargo: " + tipoCargo+ "\n"+
                 "   Relacionamento: " + relacionamento + "\n"+
                 "   Conhecimento EXA: " + conhecimento_EXA + "\n" +

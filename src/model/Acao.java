@@ -4,14 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Acao extends Atributos {
-    private String tipo;
-    private List<String> nomes;
+    private final String tipo;
+    private final List<String> nomes;
 
+    //Construtor Normal;
     public  Acao (String novoTipo, int saldoSaude, int saldoMotivacao, double saldoDinheiro, int saldoDes_acad_m1, int saldoDes_acad_m2, int saldoDes_acad_m3){
         super(saldoSaude, saldoMotivacao, saldoDinheiro, saldoDes_acad_m1, saldoDes_acad_m2, saldoDes_acad_m3);
         tipo = novoTipo;
         nomes = new ArrayList<>();
     }
+    //Contrutor de cópia
+    public  Acao (Acao outraAcao){
+        super(outraAcao);
+        tipo = outraAcao.getTipo();
+        nomes = new ArrayList<>(outraAcao.nomes);
+    }
+
     public void addNome(String nome){
         nomes.add(nome);
     }
@@ -41,5 +49,7 @@ public class Acao extends Atributos {
 
     }
 
-
+    public String getTipo() {
+        return tipo;
+    }
 }

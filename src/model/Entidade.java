@@ -1,7 +1,7 @@
 package model;
 
 public abstract class Entidade {
-    private String nome;
+    private final String nome;
 
     public Entidade(String nomeNovo){
 

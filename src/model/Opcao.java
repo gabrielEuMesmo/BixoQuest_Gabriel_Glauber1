@@ -3,10 +3,11 @@ package model;
 import java.util.ArrayList;
 
 public class Opcao {
-    private String titulo;
+    private final String titulo;
     private ArrayList<String> opcoes;
 
-    public Opcao(){
+    public Opcao(String titulo){
+        this.titulo = titulo;
         opcoes = new ArrayList<>();
     }
 
@@ -18,8 +19,10 @@ public class Opcao {
         return opcoes;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public String getOpcao(int index){
+
+        return opcoes.get(index);
+
     }
 
     public void addOpcao(String opcao){
@@ -27,9 +30,5 @@ public class Opcao {
         opcoes.add(opcao);
     }
 
-    public void removerOpcao(int num){
 
-        opcoes.remove(num);
-
-    }
 }

@@ -18,6 +18,18 @@ public class Atributos {
         this.saldoDes_acad_m3= saldoDes_acad_m3;
 
     }
+
+    public Atributos(Atributos outroAtributos){
+
+            this.saldoSaude = outroAtributos.getSaldoSaude();
+            this.saldoMotivacao =outroAtributos.getSaldoMotivacao();
+            this.saldoDinheiro = outroAtributos.getSaldoDinheiro();
+            this.saldoDes_acad_m1= outroAtributos.getSaldoDes_acad_m1();
+            this.saldoDes_acad_m2= outroAtributos.getSaldoDes_acad_m2();
+            this.saldoDes_acad_m3= outroAtributos.getSaldoDes_acad_m3();
+
+    }
+
     public Atributos(){}
 
     public int getSaldoSaude(){return saldoSaude; }
@@ -43,5 +55,14 @@ public class Atributos {
     public void setSaldoDes_acad_m2(int valor){saldoDes_acad_m2= valor; }
 
     public void setSaldoDes_acad_m3(int valor){saldoDes_acad_m3= valor; }
+
+    public void somaAtributos(Atributos atributos){
+            this.saldoSaude +=   atributos.getSaldoSaude();
+            this.saldoMotivacao += atributos.getSaldoMotivacao();
+            this.saldoDinheiro +=  atributos.getSaldoDinheiro();
+            this.saldoDes_acad_m1+= atributos.getSaldoDes_acad_m1();
+            this.saldoDes_acad_m2+= atributos.getSaldoDes_acad_m2();
+            this.saldoDes_acad_m3+= atributos.getSaldoDes_acad_m3();
+    }
 }
 

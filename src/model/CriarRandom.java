@@ -1,14 +1,14 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class CriarRandom {
 
-    private static String[] nomesColegas = {};
-    private static String[] cargosColegas = {};
+    private static final String[] nomesColegas = {"Gbriel"};
+private static final String[] cargosColegas = {"EXA", "TEC", "ALG"};
 
-    private static Random random = new Random();
+
+    private static final Random random = new Random();
 
     public static Colega criarColega(){
         boolean cargo = random.nextBoolean();
