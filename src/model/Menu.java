@@ -93,7 +93,7 @@ public class Menu extends Atributos{
 
     }
 
-    public void atualizar(){
+    public ArrayList<Acao> atualizar(){
 
         jogador.somarSaude(getSaldoSaude());
         jogador.somarMotivacao(getSaldoMotivacao());
@@ -108,9 +108,9 @@ public class Menu extends Atributos{
         setSaldoDes_acad_m2(0);
         setSaldoDes_acad_m3(0);
         CriarRandom.ramdomAcoesVariaveis(acoesFixas, opcoesAcoesVariaveis, acoesDisponiveis);
-
+        ArrayList<Acao> temp = new ArrayList<>(acoesFeitas);
         acoesFeitas.clear();
-
+        return temp;
     }
 
 
