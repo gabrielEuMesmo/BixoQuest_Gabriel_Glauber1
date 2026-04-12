@@ -1,16 +1,33 @@
 package model;
 
+// Representa um colega com quem o jogador pode interagir.
 public class Colega extends Personagem{
 
+    // Semestre atual do colega.
     private int semestre;
+
+    // Indica se o colega ocupa algum cargo acadêmico.
     private final boolean cargo;
+
+    // Tipo de cargo ocupado pelo colega.
     private final String tipoCargo;
+
+    // Nível de relacionamento com o jogador.
     private int relacionamento;
+
+    // Conhecimento do colega em EXA.
     private final int conhecimento_EXA;
+
+    // Conhecimento do colega em TEC.
     private final int conhecimento_TEC;
+
+    // Conhecimento do colega em ALG.
     private  final int conhecimento_ALG;
+
+    // Marca se o colega conversou no turno atual.
     private boolean conversou;
 
+    // Inicializa um colega com seus dados fixos e estado social.
     public Colega(String nome, int semestre, boolean cargo, String tipoCargo, int conhecimento_EXA, int conhecimento_TEC, int conhecimento_ALG){
 
         super(nome);
@@ -24,6 +41,7 @@ public class Colega extends Personagem{
     }
 
     @Override
+    // Exibe um resumo textual do colega.
     public String toString() {
         return getNome() + "\n"+
                 "   Semestre: " + semestre + "\n" +
@@ -34,13 +52,16 @@ public class Colega extends Personagem{
                 "   Conhecimento ALG: " + conhecimento_ALG + "\n";
     }
 
+    // Informa se o colega já conversou no turno atual.
     public boolean getConversou(){
         return conversou;
     }
 
+    // Retorna o nível de relacionamento atual.
     public int getRelacionamento() {return relacionamento;}
 
     @Override
+    // Gera a ação de conversa considerando bônus de cargo.
     public Acao conversar() {
 
         int bonus_EXA = 1;
@@ -73,6 +94,8 @@ public class Colega extends Personagem{
         return retorno;
 
     }
+
+    // Atualiza o estado social do colega ao fim do turno.
     public void atualizar(){
 
         if (!conversou){
@@ -81,6 +104,7 @@ public class Colega extends Personagem{
         conversou = false;
     }
 
+    // Avança o semestre atual do colega.
     public void atualizarSemestre(){
         semestre++;
     }
