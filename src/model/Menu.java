@@ -13,33 +13,41 @@ public class Menu extends Atributos{
     private final Map<String, Opcao> opcoes;
 
     //Ações que podem ser feitas (exceto conversar);
-    private final Map<String, Acao[]> opcoesAcoesVariaveis;
+    private final HashMap<String, ArrayList<Acao>> opcoesAcoesVariaveis;
 
     //Ações que podem ser feitas (exceto conversar);
-    private final Map<String, Acao[]> acoesDisponiveis;
+    private final HashMap<String, ArrayList<Acao>> acoesDisponiveis;
+
+    private final HashMap<String, ArrayList<Acao>> acoesFixas;
 
 
     //Ações realizadas no turno;
     private final ArrayList<Acao> acoesFeitas;
 
-    public Menu(Jogador jogador, HashMap<String, Opcao> opcoes, HashMap<String,Acao[]> acoesVariaveis, HashMap<String,Acao[]> acoesFixas){
+    public Menu(Jogador jogador, HashMap<String, Opcao> opcoes, HashMap<String,ArrayList<Acao>> acoesVariaveis, HashMap<String,ArrayList<Acao>> acoesFixas){
         super();
         this.jogador = jogador;
         acoesFeitas = new ArrayList<>();
         this.opcoes = opcoes;
         opcoesAcoesVariaveis = acoesVariaveis;
+
+        this.acoesFixas =new HashMap<>(acoesFixas);
+
         acoesDisponiveis =new HashMap<>(acoesFixas);
     }
 
     public boolean realizar(String pag){
 
         if(acoesDisponiveis.containsKey(pag.substring(0, pag.length()-1))){
-
-            addAcao(new Acao(acoesDisponiveis.get(pag.substring(0, pag.length()-1))[pag.charAt(pag.length()-1) - '0']));
+            if(acoesDisponiveis.get(pag.substring(0, pag.length()-1)).size() > pag.charAt( pag.length()-1) - '0'){
+            addAcao(new Acao(acoesDisponiveis.get(pag.substring(0, pag.length()-1)).get(pag.charAt(pag.length()-1) - '0')));
             this.pag = "";
 
             return true;
+            }
+
         }
+
         return false;
     }
 
@@ -54,7 +62,7 @@ public class Menu extends Atributos{
 
         if(opcoes.containsKey(pag + escolha)){
 
-            if(opcoes.get(pag).getOpcao(escolha).equals("sair")){
+            if(opcoes.get(pag).getOpcao(escolha).equals("Voltar")){
                 pag = pag.substring(0, pag.length()-1);
             }else {
                 pag += escolha;
@@ -99,6 +107,7 @@ public class Menu extends Atributos{
         setSaldoDes_acad_m1(0);
         setSaldoDes_acad_m2(0);
         setSaldoDes_acad_m3(0);
+        CriarRandom.ramdomAcoesVariaveis(acoesFixas, opcoesAcoesVariaveis, acoesDisponiveis);
 
         acoesFeitas.clear();
 

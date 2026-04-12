@@ -2,16 +2,28 @@ package model;
 
 import java.util.ArrayList;
 
+
 public class Social extends Menu{
 
+    private final ArrayList<Colega> amigos;
     private final ArrayList<Colega> colegas;
     private final ArrayList<Colega> colegasDisponiveis;
 
     public Social(Jogador jogador){
 
-        super(jogador);
+        super(jogador,CriarRandom.opcoesSocial(),CriarRandom.opcoesAcoesVariaveisSocial(),CriarRandom.opcoesAcoesFixasSocial());
         colegas = new ArrayList<>();
+        amigos = new ArrayList<>();
         colegasDisponiveis = new ArrayList<>();
+    }
+
+    public void adicionarAmigos(){
+
+        for(Colega colega : colegas){
+            if(colega.getRelacionamento() == 5){
+                amigos.add(colega);
+            }
+        }
     }
 
     @Override
@@ -32,6 +44,7 @@ public class Social extends Menu{
 
         getOpcao("11").getOpcoes().clear();
         colegasDisponiveis.clear();
+        adicionarAmigos();
 
         for(Colega colega : colegas){
 

@@ -2,14 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
-public class Opcao {
-    private final String titulo;
-    private ArrayList<String> opcoes;
+public record  Opcao(String titulo, ArrayList<String> opcoes) {
 
-    public Opcao(String titulo, ArrayList<String> opcoes){
-        this.titulo = titulo;
-        this.opcoes = new ArrayList<>(opcoes);
-    }
 
     public String getTitulo(){
         return titulo;

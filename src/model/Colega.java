@@ -37,6 +37,9 @@ public class Colega extends Personagem{
     public boolean getConversou(){
         return conversou;
     }
+
+    public int getRelacionamento() {return relacionamento;}
+
     @Override
     public Acao conversar() {
 
@@ -66,7 +69,7 @@ public class Colega extends Personagem{
 
         retorno.addNome(getNome());
         conversou = true;
-        relacionamento++;
+        if(relacionamento <5){relacionamento++;}
         return retorno;
 
     }

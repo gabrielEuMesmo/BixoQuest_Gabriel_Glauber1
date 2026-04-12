@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Jogador extends Entidade{
 
     private int saude;
@@ -10,6 +13,11 @@ public class Jogador extends Entidade{
     private int desempenho_academico_m1 = 0;
     private int desempenho_academico_m2 = 0;
     private int desempenho_academico_m3 = 0;
+    private String pag ="";
+    Social social = new Social(this);
+    Academico academico = new Academico(this);
+    Saude saudeClasse = new Saude(this);
+    Financeiro financeiro = new Financeiro(this);
 
 
     //Construtor
@@ -139,14 +147,45 @@ public class Jogador extends Entidade{
     }
 
     public Opcao mostrarOpcao(){
+        if(pag.equals("") ){
+           return new Opcao("Opções", new ArrayList<>(Arrays.asList("Social", "Academico", "Financeiro", "Saude")));
 
+        }else if(pag.equals("1")){
+
+            return social.mostrar();
+
+        }else if(pag.equals("2")){
+
+            return academico.mostrar();
+
+        }else if(pag.equals("3")){
+
+        return financeiro.mostrar();
+    }
+        return saudeClasse.mostrar();
 
     }
 
     public boolean escolherOpcao(int escolha){
+        if (escolha>0 && escolha<= 5 && pag.equals("")){pag += escolha;}
+        if(pag.equals("") ){
+            return true;
 
+        }else if(pag.equals("1")){
 
+            return social.escolher(escolha);
 
+        }else if(pag.equals("2")){
+
+            return academico.escolher(escolha);
+
+        }else if(pag.equals("3")){
+
+            return financeiro.escolher(escolha);
+        }else if(pag.equals("4")) {
+            return saudeClasse.escolher(escolha);
+        }
+        return true;
     }
 
 }
