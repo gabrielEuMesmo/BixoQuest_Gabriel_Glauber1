@@ -44,7 +44,7 @@ public class Acao extends Atributos {
         }
         resposta += "\n" +
                 "Saldo de Saude:" + getSaldoSaude() + "\n" +
-                "Saldo de Motivação:" + getSaldoMotivacao() + "\n"+
+                "Saldo de Motivacao:" + getSaldoMotivacao() + "\n"+
                 "Saldo de Dinheiro:" + getSaldoDinheiro() + "\n" +
                 "Saldo de Desempenho academico EXA:" + getSaldoDes_acad_m1() + "\n" +
                 "Saldo de Desempenho academico TEC" + getSaldoDes_acad_m2() + "\n" +
