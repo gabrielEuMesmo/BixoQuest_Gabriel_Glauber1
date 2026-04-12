@@ -1,13 +1,11 @@
 package controller;
 import model.Opcao;
 import model.OpcaoVisualNovel;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class SistemaDeRotas {
-
     private String pag;
     private int ultimaEscolha;
     private Map<String, OpcaoVisualNovel> roteador;
@@ -115,7 +113,6 @@ public class SistemaDeRotas {
     }
 
     // CONTROLE DE NAVEGACAO
-
     public OpcaoVisualNovel getMenuAtual() {
         return roteador.get(pag);
     }

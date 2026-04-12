@@ -16,7 +16,6 @@ public class Jogador {
     public int energiaDia; //ESSA ENERGIA É DIARIA
 
     //FUTURAMENTE SEPARAR CADA DESSES ATRIBUTOS PARA COMENTAR ESPECIFICANDO CADA UM
-
     //HISTORICO DE AÇÕES DO TURNO, PARA EXIBIR AO FIM DE CADA TURNO O QUE O JOGADOR FEZ E SEU IMPACTO!
     private List<Acao> acoesDoTurno;
 
@@ -48,7 +47,6 @@ public class Jogador {
     }
 
     //ENERGIA
-
     public int getEnergia() { return energia; }
     public int getEnergiaDia() { return energiaDia; }
     public void somarEnergia(int valor) {
