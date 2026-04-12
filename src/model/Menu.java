@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Menu extends Atributos{
+public abstract class Menu extends Atributos{
 
     private final Jogador jogador;
 
