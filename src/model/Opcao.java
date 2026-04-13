@@ -18,8 +18,8 @@ public class Opcao {
         return opcoes;
     }
 
-    public String getOpcao(int index){
-        return opcoes.get(index);
+    public String getOpcao(int i){
+        return opcoes.get(i);
     }
 
     public void addOpcao(String opcao){

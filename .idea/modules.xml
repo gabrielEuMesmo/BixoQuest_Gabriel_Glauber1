@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BixoQuest_Gabriel_Glauber.iml" filepath="$PROJECT_DIR$/.idea/modules/BixoQuest_Gabriel_Glauber.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BixoQuest_Gabriel_Glauber.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BixoQuest_Gabriel_Glauber.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BixoQuest_Gabriel_Glauber.iml" filepath="$PROJECT_DIR$/BixoQuest_Gabriel_Glauber.iml" />
     </modules>
   </component>
 </project>
