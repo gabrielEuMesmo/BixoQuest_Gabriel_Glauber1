@@ -8,7 +8,7 @@ class BancoDialogoColegaTest {
 
     @Test
     void criarSucoRetornaColegaValidoComRoteiro() {
-        Colega colega = BancoDialogoColega.criarSuco();
+        ColegaDia colega = BancoDialogoColega.criarSuco();
 
         assertNotNull(colega);
         assertEquals("Suco", colega.getNome());
@@ -24,7 +24,7 @@ class BancoDialogoColegaTest {
 
     @Test
     void criarMaeliRetornaColegaValidoComRoteiro() {
-        Colega colega = BancoDialogoColega.criarMaeli();
+        ColegaDia colega = BancoDialogoColega.criarMaeli();
 
         assertNotNull(colega);
         assertEquals("Maeli", colega.getNome());
@@ -40,7 +40,7 @@ class BancoDialogoColegaTest {
 
     @Test
     void criarCarameloRetornaColegaValidoComRoteiro() {
-        Colega colega = BancoDialogoColega.criarCaramelo();
+        ColegaDia colega = BancoDialogoColega.criarCaramelo();
 
         assertNotNull(colega);
         assertEquals("Caramelo", colega.getNome());

@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ColegaTest {
+class ColegaDiaTest {
 
     private List<CenaDialogo> roteiroDuasCenas() {
         CenaDialogo c0 = new CenaDialogo("cena0", Collections.singletonList(new OpcaoResposta("a", 1, 1, 1, 1, 1.0, 1, "r")));
@@ -18,7 +18,7 @@ class ColegaTest {
 
     @Test
     void construtorArmazenaCamposIniciais() {
-        Colega colega = new Colega("Suco", "ALG", 3, roteiroDuasCenas());
+        ColegaDia colega = new ColegaDia("Suco", "ALG", 3, roteiroDuasCenas());
 
         assertEquals("Suco", colega.getNome());
         assertEquals("ALG", colega.getArea());
@@ -28,7 +28,7 @@ class ColegaTest {
 
     @Test
     void aumentarRelacionamentoRespeitaRegras() {
-        Colega colega = new Colega("Maeli", "EXA", 1, roteiroDuasCenas());
+        ColegaDia colega = new ColegaDia("Maeli", "EXA", 1, roteiroDuasCenas());
 
         colega.aumentarRelacionamento(2);
         assertEquals(2, colega.getNivelRelacionamento());
@@ -50,7 +50,7 @@ class ColegaTest {
     @Test
     void getCenaAtualRetornaCenaCorretaOuUltimaQuandoUltrapassa() {
         List<CenaDialogo> roteiro = roteiroDuasCenas();
-        Colega colega = new Colega("Suco", "ALG", 3, roteiro);
+        ColegaDia colega = new ColegaDia("Suco", "ALG", 3, roteiro);
 
         assertSame(roteiro.get(0), colega.getCenaAtual());
 
@@ -67,7 +67,7 @@ class ColegaTest {
     @Test
     void integracaoNpcCenaDialogoOpcaoResposta() {
         List<CenaDialogo> roteiro = roteiroDuasCenas();
-        Colega colega = new Colega("Suco", "ALG", 3, roteiro);
+        ColegaDia colega = new ColegaDia("Suco", "ALG", 3, roteiro);
 
         assertEquals("cena0", colega.getCenaAtual().getFalaPrincipal());
 
