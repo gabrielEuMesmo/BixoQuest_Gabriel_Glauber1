@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BancoDialogoColega {
 
-    public static Colega criarSuco() {
+    public static ColegaDia criarSuco() {
 
         List<CenaDialogo> roteiro = new ArrayList<>();
 
@@ -91,10 +91,10 @@ public class BancoDialogoColega {
 
         roteiro.add(new CenaDialogo(fala2, Arrays.asList(op2_1, op2_2)));
 
-        return new Colega("Suco", "ALG", 3, roteiro);
+        return new ColegaDia("Suco", "ALG", 3, roteiro);
     }
 
-    public static Colega criarMaeli() {
+    public static ColegaDia criarMaeli() {
 
         List<CenaDialogo> roteiro = new ArrayList<>();
 
@@ -152,10 +152,10 @@ public class BancoDialogoColega {
 
         roteiro.add(new CenaDialogo(fala1, Arrays.asList(op1_1, op1_2)));
 
-        return new Colega("Maeli", "EXA", 1, roteiro);
+        return new ColegaDia("Maeli", "EXA", 1, roteiro);
     }
 
-    public static Colega criarCaramelo() {
+    public static ColegaDia criarCaramelo() {
 
         List<CenaDialogo> roteiro = new ArrayList<>();
 
@@ -201,6 +201,6 @@ public class BancoDialogoColega {
 
         roteiro.add(new CenaDialogo(fala1, Arrays.asList(op1_1)));
 
-        return new Colega("Caramelo", "GERAL", 0, roteiro);
+        return new ColegaDia("Caramelo", "GERAL", 0, roteiro);
     }
 }

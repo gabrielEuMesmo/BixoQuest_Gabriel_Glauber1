@@ -21,9 +21,9 @@ public class ConstrutorDeMapa {
         //CRIANDO OS NPCs PELAS FABRICAS
         Professor anfranserai = BancoDialogoProfessor.criarAnfranserai();
         Professor rogerio      = BancoDialogoProfessor.criarRogerio();
-        Colega suco           = BancoDialogoColega.criarSuco();
-        Colega maeli          = BancoDialogoColega.criarMaeli();
-        Colega caramelo       = BancoDialogoColega.criarCaramelo();
+        ColegaDia suco           = BancoDialogoColega.criarSuco();
+        ColegaDia maeli          = BancoDialogoColega.criarMaeli();
+        ColegaDia caramelo       = BancoDialogoColega.criarCaramelo();
 
         //REGISTRANDO PRESENCAS -> Quem esta onde e quando
 

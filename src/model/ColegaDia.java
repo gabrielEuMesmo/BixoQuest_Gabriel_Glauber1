@@ -1,7 +1,7 @@
 package model;
 import java.util.List;
 
-public class Colega implements NPC {
+public class ColegaDia implements NPC {
     private String nome;
     private String area;
     private int semestre;
@@ -9,7 +9,7 @@ public class Colega implements NPC {
     private List<CenaDialogo> roteiro;
 
     //CONSTRUTOR
-    public Colega(String nome, String area, int semestre, List<CenaDialogo> roteiro) {
+    public ColegaDia(String nome, String area, int semestre, List<CenaDialogo> roteiro) {
         this.nome               = nome;
         this.area               = area;
         this.semestre           = semestre;
