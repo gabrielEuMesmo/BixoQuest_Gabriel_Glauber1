@@ -1,9 +1,10 @@
 package model;
-
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Jogador {
+public class Jogador implements Serializable {
     public String nome;
     public int saude;
     public int energia; //ESSA ENERGIA É SEMANAL
@@ -14,16 +15,31 @@ public class Jogador {
     public int desempenho_academico_ALG;
     public double porcentagem_curso;
     public int energiaDia; //ESSA ENERGIA É DIARIA
+    private transient SistemaDeRotas rotas;
 
     //FUTURAMENTE SEPARAR CADA DESSES ATRIBUTOS PARA COMENTAR ESPECIFICANDO CADA UM
     //HISTORICO DE AÇÕES DO TURNO, PARA EXIBIR AO FIM DE CADA TURNO O QUE O JOGADOR FEZ E SEU IMPACTO!
-    private List<Acao> acoesDoTurno;
+    private transient List<Acao> acoesDoTurno;
 
     //CONSTANTES PARA GARANTIR TRATAMENTO CORRETO DOS STATUS DO JOGADOR!
-    private static final int MAX_STATUS   = 100;
-    private static final int MIN_STATUS   = 0;
-    private static final int ENERGIA_BASE = 70;
+    private static final int MAX_STATUS = 100;
+    private static final int MIN_STATUS = 0;
+    private static final int ENERGIA_BASE = 100;
 
+    public Jogador(Jogador jogador) {
+        this.nome = jogador.getNome();
+        this.saude = clamp(jogador.saude, MIN_STATUS, MAX_STATUS);
+        this.energia = clamp(jogador.getEnergia(), MIN_STATUS, ENERGIA_BASE);
+        this.motivacao = clamp(jogador.getMotivacao(), MIN_STATUS, MAX_STATUS);
+        this.dinheiro = jogador.getDinheiro();
+        this.desempenho_academico_EXA = jogador.getDesempenho_EXA();
+        this.desempenho_academico_TEC = jogador.getDesempenho_TEC();
+        this.desempenho_academico_ALG = jogador.getDesempenho_ALG();
+        this.porcentagem_curso = jogador.getPorcentagem();
+        this.energiaDia = clamp(jogador.getEnergiaDia(), MIN_STATUS, ENERGIA_BASE);
+        this.acoesDoTurno = new ArrayList<>();
+        this.rotas = new SistemaDeRotas();
+    }
     //CONSTRUTOR
     public Jogador(String nome, int saude, int energiaInicio, int motivacao, double dinheiro) {
         this.nome                    = nome;
@@ -34,9 +50,14 @@ public class Jogador {
         this.desempenho_academico_EXA = 0;
         this.desempenho_academico_TEC = 0;
         this.desempenho_academico_ALG = 0;
-        this.porcentagem_curso       = 0.0;
-        this.energiaDia                = clamp(energiaInicio, MIN_STATUS, ENERGIA_BASE);
-        this.acoesDoTurno            = new ArrayList<>();
+        this.porcentagem_curso = 0.0;
+        this.energiaDia = clamp(energiaInicio, MIN_STATUS, ENERGIA_BASE);
+        this.acoesDoTurno = new ArrayList<>();
+        this.rotas = new SistemaDeRotas();
+    }
+
+    public SistemaDeRotas getRotas() {
+        return rotas;
     }
 
     //UTILITARIO PARA ADIANTAR E AGILIZAR PARA VALIDAÇÂO!
@@ -56,7 +77,11 @@ public class Jogador {
     public void subtrairEnergia(int valor) {
         this.energia = clamp(this.energia - valor, MIN_STATUS, ENERGIA_BASE);
     }
-    public void subtrairEnergiaDia(int valor) { this.energiaDia = clamp(this.energiaDia - valor, MIN_STATUS, ENERGIA_BASE); }
+
+    public void subtrairEnergiaDia(int valor) {
+        this.energiaDia = clamp(this.energiaDia - valor, MIN_STATUS, ENERGIA_BASE);
+    }
+
     //RESTAURAR PARA VIRADA DE TURNO!
     public void restaurarEnergia() {
         this.energia = ENERGIA_BASE;
@@ -195,3 +220,6 @@ public class Jogador {
                 "Algoritmos : " + desempenho_academico_ALG + " pts";
     }
 }
+
+
+

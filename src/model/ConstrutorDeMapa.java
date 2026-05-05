@@ -4,9 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConstrutorDeMapa {
-
     public static Map<String, Local> gerarMapaUefs() {
-
         Map<String, Local> mapaMundo = new HashMap<>();
 
         //CRIANDO OS LOCAIS

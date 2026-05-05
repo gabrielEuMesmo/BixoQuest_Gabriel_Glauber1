@@ -3,13 +3,13 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class OpcaoVisualNovel extends Opcao {
-    private String tituloLocal;
-    private List<String> textosEscolhas;
-    private boolean acaoCritica;
+    public String tituloLocal;
+    public List<String> textosEscolhas;
+    public boolean acaoCritica;
 
     //ESSE "nomeLocalReal" É USADO PARA OPÇÕES DE AÇÃO CRÍTICA, ONDE O JOGADOR PRECISA SELECIONAR UM LOCAL ESPECÍFICO
     // PARA REALIZAR A AÇÃO, E ESSE NOME SERVE PARA BUSCAR O LOCAL ATUAL!
-    private String nomeLocalReal;
+    public String nomeLocalReal;
 
     //CONSTRUTOR PARA OPÇÕES DE AÇÃO CRÍTICA, ONDE O JOGADOR PODE SELECIONAR QUALQUER LOCAL PARA REALIZAR A AÇÃO!
     public OpcaoVisualNovel(String tituloLocal, List<String> textosEscolhas, boolean acaoCritica) {

@@ -1,5 +1,4 @@
 package controller;
-
 import model.Acao;
 import model.AcaoDialogo;
 import model.CenaDialogo;
@@ -12,11 +11,13 @@ import model.OpcaoVisualNovel;
 import model.OpcaoResposta;
 import model.enums.BlocoTempo;
 import model.enums.SemanaEnum;
+import model.persistencia.Captura;
+import model.persistencia.Load;
 import view.TerminalView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 public class GameController {
 
@@ -41,11 +42,14 @@ public class GameController {
             SemanaEnum.PROVA_M3
     };
 
+    private BlocoTempo blocoTempoAtual;
+
+    private List<Acao> acoesDoTurno = new ArrayList<>();
+
     // Numero total de semestres no jogo
     private static final int TOTAL_SEMESTRES = 5;
 
     // CONSTRUTOR
-
     public GameController() {
         this.view       = new TerminalView();
         this.rotas      = new SistemaDeRotas();
@@ -53,9 +57,6 @@ public class GameController {
     }
 
     // PONTO DE ENTRADA
-
-
-
     public void iniciar() {
         view.exibirBoasVindas();
         String nome = view.pedirNomeJogador();
@@ -67,6 +68,8 @@ public class GameController {
         semanaAtual   = 1;
         blocoTempo    = BlocoTempo.MANHA_1;
 
+        //TRUXBIRAUNDAUM
+
         view.exibirMensagem("\n  " + nome + " se matriculou em Engenharia de Computacao na UEFS.");
         view.exibirMensagem("  Seu Mais Futuro caiu. A jornada comeca agora!\n");
         view.pausar();
@@ -75,9 +78,6 @@ public class GameController {
     }
 
     // LOOP PRINCIPAL
-
-
-
     private void loopPrincipal() {
         while (semestreAtual <= TOTAL_SEMESTRES && !jogador.isGameOver() && !jogador.isFormado()) {
 
@@ -110,8 +110,6 @@ public class GameController {
     }
 
     // EXECUCAO DE UMA SEMANA
-
-
     private void executarSemana(SemanaEnum tipoSemana) {
 
         // Loop de blocos de tempo (MANHA_1 ate NOITE)
@@ -176,7 +174,6 @@ public class GameController {
     }
 
     // INTERACAO COM NPC
-
     private boolean executarInteracaoNPC() {
 
         // Pega o Local real a partir do nomeLocalReal da Opcao atual
@@ -245,11 +242,10 @@ public class GameController {
         // Exibe a reacao do NPC e o resultado da acao
         view.exibirReacaoNPC(npcEscolhido.getNome(), respostaEscolhida.getReacaoDoNPC());
         view.exibirResultadoAcao(acao);
-
         return true;
     }
-    // PROVA
 
+    // PROVA
     private void executarProva(SemanaEnum tipoProva) {
 
         view.exibirMensagem("");
@@ -284,7 +280,6 @@ public class GameController {
             jogador.somarMotivacao(15);
             view.exibirMensagem("  Aprovado(a) em tudo! Conclusao do curso avancou.");
         }
-
         view.pausar();
     }
 
@@ -306,5 +301,49 @@ public class GameController {
             view.exibirMensagem("  Preparando o proximo semestre...");
         }
         view.pausar();
+    }
+
+    public void carregarJogo(String slotSelecionado) {
+        // 1. Pede para a classe Load buscar o arquivo e devolver o objeto Captura
+        Captura saveRecuperado = Load.carregar(slotSelecionado);
+
+        if (saveRecuperado != null) {
+            // 2. Desempacota a Captura (Aplica os dados de volta no Controller)
+            // NÃO se usa construtor! Você só substitui as variáveis atuais pelas que vieram do save.
+
+            this.jogador = saveRecuperado.getJogador(); // O Jogador inteiro, com dinheiro, saúde, volta à vida!
+            this.semestreAtual = saveRecuperado.getSemestreAtual();
+            this.semanaAtual = saveRecuperado.getSemanaAtual();
+            this.blocoTempoAtual = saveRecuperado.getBlocoTempoAtual();
+
+            // 3. Recria o mapa estático (Locais limpos)
+            this.mapaMundo = ConstrutorDeMapa.gerarMapaUefs();
+
+            // 4. Aplica os relacionamentos nos NPCs recém-criados usando o Map do save
+            Map<String, Integer> relacoesSalvas = saveRecuperado.getRelacionamentoPorNpc();
+            aplicarRelacionamentos(relacoesSalvas); // Seu metodo de varrer os NPCs
+
+            // 5. Atualiza o histórico de ações daquele turno
+            this.acoesDoTurno = saveRecuperado.getAcoesDoTurno();
+
+            System.out.println("Jogo Carregado! Bem vindo de volta, " + this.jogador.getNome());
+        }
+    }
+
+    private void aplicarRelacionamentos(Map<String, Integer> relacoesSalvas) {
+        if (relacoesSalvas == null) return;
+
+        // Para cada local do seu mapaMundo
+        for (Local local : this.mapaMundo.values()) {
+            // Pega todos os personagens daquele local
+            for (NPC npc : local.getTodosPersonagens()) {
+                String nomeNpc = npc.getNome();
+                // Se o NPC existe no save, aplica o nível
+                if (relacoesSalvas.containsKey(nomeNpc)) {
+                    int nivelSalvo = relacoesSalvas.get(nomeNpc);
+                    npc.setNivelRelacionamento(nivelSalvo); // Certifique-se que NPC tem esse metodo!
+                }
+            }
+        }
     }
 }

@@ -7,10 +7,9 @@ import java.util.List;
 public class BancoDialogoColega {
 
     public static ColegaDia criarSuco() {
-
         List<CenaDialogo> roteiro = new ArrayList<>();
 
-        // ── CENA 0: Primeiro encontro ─────────────────────────────────────────
+        // ── CENA 0: Primeiro encontro
         String fala0 = "Fala seu virge, aqui é ZECAmmmm! Bó vê um rango no RU TO NA BROCAAA!";
 
         OpcaoResposta op0_1 = new OpcaoResposta(
@@ -37,7 +36,7 @@ public class BancoDialogoColega {
 
         roteiro.add(new CenaDialogo(fala0, Arrays.asList(op0_1, op0_2)));
 
-        // ── CENA 1: Nivel 1 ──────────────────────────────────────────────────
+        // ── CENA 1: Nivel 1
         String fala1 = "Cara, mulher?";
 
         OpcaoResposta op1_1 = new OpcaoResposta(
@@ -48,7 +47,7 @@ public class BancoDialogoColega {
                 20,     // +20 Motivacao
                 -30.0,  // -30 Dinheiro
                 -10,    // -10 Saude (festa cansa)
-                "Éé esse né virge naum"
+                "É esse né virge naum"
         );
 
         OpcaoResposta op1_2 = new OpcaoResposta(
@@ -169,7 +168,7 @@ public class BancoDialogoColega {
                 3,      // Custo 3 Energia
                 20,     // +20 Motivacao (reconfortante)
                 0.0,
-                10,     // +10 Saude (bem estar mental)
+                10,     // +10 Saude (bem-estar mental)
                 "*Caramelo late de felicidade e lambe sua mao. Voce se sentiu muito melhor.*"
         );
 

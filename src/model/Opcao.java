@@ -10,6 +10,11 @@ public class Opcao {
         opcoes = new ArrayList<>();
     }
 
+    public Opcao(String titulo, ArrayList<String> opcoes){
+        this.titulo = titulo;
+        this.opcoes = new ArrayList<>(opcoes);
+    }
+
     public String getTitulo(){
         return titulo;
     }

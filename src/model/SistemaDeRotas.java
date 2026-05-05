@@ -1,6 +1,4 @@
-package controller;
-import model.Opcao;
-import model.OpcaoVisualNovel;
+package model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +33,7 @@ public class SistemaDeRotas {
         //MODULO 1
         roteador.put("01", new OpcaoVisualNovel(
                 "Modulo 1",
-                Arrays.asList("Salas do M1", "Biblioteca Central"),
+                Arrays.asList("Salas do M1", "Biblioteca"),
                 false
         ));
 

@@ -65,6 +65,7 @@ public class OpcaoResposta {
 
     //GET DE TUDO!
     //GET nÂO È REDUNDANTE POIS ESSE É RELACIONADO AO USO DE UMA ACAO E NÂO aO VALOR COMPLETO!
+    /** Texto do diálogo do jogador com o NPC **/
     public String getTextoPlayer()          { return textoPlayer; }
     public int    getImpactoRelacionamento(){ return impactoRelacionamento; }
     public int    getGanhoConhecimento()    { return ganhoConhecimento; }
