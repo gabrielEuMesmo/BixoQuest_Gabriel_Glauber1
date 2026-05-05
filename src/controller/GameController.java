@@ -23,8 +23,7 @@ public class GameController {
 
     // ── Dependencias
     private final TerminalView    view;
-    private final SistemaDeRotas  rotas;
-    private final Map<String, Local> mapaMundo;
+    private Map<String, Local> mapaMundo;
 
     // ── Estado do jogo
     private Jogador jogador;
@@ -52,7 +51,6 @@ public class GameController {
     // CONSTRUTOR
     public GameController() {
         this.view       = new TerminalView();
-        this.rotas      = new SistemaDeRotas();
         this.mapaMundo  = ConstrutorDeMapa.gerarMapaUefs();
     }
 
@@ -143,27 +141,27 @@ public class GameController {
     // LOOP DE MENU DE NAVEGACAO
     private void executarMenuNavegacao() {
 
-        rotas.resetarParaRaiz();
+        jogador.getRotas().resetarParaRaiz();
         boolean continuarNavegando = true;
 
         while (continuarNavegando && jogador.temEnergiaDia() && !jogador.isGameOver()) {
 
-            OpcaoVisualNovel menuAtual = rotas.getMenuAtual();
-            boolean podeVoltar = !rotas.isNaRaiz();
+            OpcaoVisualNovel menuAtual = jogador.getRotas().getMenuAtual();
+            boolean podeVoltar = !jogador.getRotas().isNaRaiz();
             //opcao
             // Exibe o menu de navegacao (lista de locais)
             view.exibirMenuNavegacao(menuAtual, podeVoltar);
             int escolha = view.lerOpcao(menuAtual.getTextosEscolhas().size());
 
             // Processa a navegacao
-            boolean apenasNavegou = rotas.processarEscolha(escolha);
+            boolean apenasNavegou = jogador.getRotas().processarEscolha(escolha);
 
             if (!apenasNavegou) {
                 // Chegou num local de acao critica: exibe NPCs e executa interacao
                 boolean encerrouBloco = executarInteracaoNPC();
 
                 // Sempre reseta a navegacao para a raiz apos tentar uma acao
-                rotas.resetarParaRaiz();
+                jogador.getRotas().resetarParaRaiz();
 
                 // Se houve interacao real ou local vazio, encerra o bloco atual
                 if (encerrouBloco) {
@@ -177,7 +175,7 @@ public class GameController {
     private boolean executarInteracaoNPC() {
 
         // Pega o Local real a partir do nomeLocalReal da Opcao atual
-        OpcaoVisualNovel opcaoAtual     = rotas.getMenuAtual();
+        OpcaoVisualNovel opcaoAtual     = jogador.getRotas().getMenuAtual();
         String nomeLocalReal = opcaoAtual.getNomeLocalReal();
         Local  localAtual    = mapaMundo.get(nomeLocalReal);
 
